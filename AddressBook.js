@@ -34,6 +34,14 @@ class Contact {
     getAllContacts() {
       return this.contacts;
     }
+    findContact(firstName, lastName) {
+        for (let i = 0; i < this.contacts.length; i++) {
+          if (this.contacts[i].firstName === firstName && this.contacts[i].lastName === lastName) {
+            return this.contacts[i];
+          }
+        }
+        return null;
+      }
   }
   
   
@@ -45,4 +53,9 @@ class Contact {
   book.addContact(Raaj);
   book.addContact(Jadhav);
   
-  console.log(book.getAllContacts()); 
+  const foundContact = book.findContact('Subhash', 'Barela');
+if (foundContact) {
+  console.log("Contact Found!");
+} else {
+  console.log('Contact not found');
+}
