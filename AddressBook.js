@@ -34,28 +34,47 @@ class Contact {
     getAllContacts() {
       return this.contacts;
     }
-    findContact(firstName, lastName) {
-        for (let i = 0; i < this.contacts.length; i++) {
-          if (this.contacts[i].firstName === firstName && this.contacts[i].lastName === lastName) {
-            return this.contacts[i];
-          }
+  
+     findContact(firstName, lastName) {
+      for (let i = 0; i < this.contacts.length; i++) {
+        if (this.contacts[i].firstName === firstName && this.contacts[i].lastName === lastName) {
+          return this.contacts[i];
         }
-        return null;
       }
-     
-      filterContactsByCity(city) {
-        return this.contacts.filter(contact => contact.city === city);
-      }
+      return null;
+    }
+  
+    getNumberOfContacts() {
+      return this.contacts.reduce((count, contact) => count + 1, 0);
+    }
+  
+    getNumberOfContactsByCity() {
+      const contactsByCity = {};
+      this.contacts.forEach(contact => {
+        if (contactsByCity[contact.city]) {
+          contactsByCity[contact.city]++;
+        } else {
+          contactsByCity[contact.city] = 1;
+        }
+      });
+      return contactsByCity;
+    }
   }
   
   
-  // example usage
-  const Raaj = new Contact('Subhash', 'Barela', 'New Delhi', '8654765433');
-  const Jadhav = new Contact('Raaj', 'Chouhan', 'USA', '8845422656');
+  const john = new Contact('Subhash', 'Barela', 'New York', '8369315555');
+  const jane = new Contact('Shiva', 'Chouhan', 'madhy pradesh', '87654224945');
+  const person3 = new Contact('Doctor', 'Strange', 'New York', '987661213');
+  const person4 = new Contact('Bruce', 'Banner', 'California', '8369315555');
   const book = new AddressBook();
   
-  book.addContact(Raaj);
-  book.addContact(Jadhav);
+  book.addContact(john);
+  book.addContact(jane);
+  book.addContact(person3);
+  book.addContact(person4);
   
-  const losAngelesContacts = book.filterContactsByCity('New york');
-  console.log(losAngelesContacts);
+  const contactsByCity = book.getNumberOfContactsByCity();
+  for (const city in contactsByCity) {
+    console.log(`${city}: ${contactsByCity[city]}`);
+  }
+  
