@@ -1,6 +1,12 @@
 class Contact {
-
     constructor(firstName, lastName, city, phoneNumber) {
+      const nameRegex = /^[A-Z][a-z]{2,}$/; // Regex for first name and last name
+      if (!nameRegex.test(firstName)) {
+        throw new Error('First name should start with a capital letter and should have at least 3 characters');
+      }
+      if (!nameRegex.test(lastName)) {
+        throw new Error('Last name should start with a capital letter and should have at least 3 characters');
+      }
       this.firstName = firstName;
       this.lastName = lastName;
       this.city = city;
@@ -30,12 +36,13 @@ class Contact {
     }
   }
   
+  
   // example usage
-  const john = new Contact('subhash', 'barela', 'New Delhi', '8654765433');
-  const jane = new Contact('Raaj', 'chouhan', 'USA', '8845422656');
+  const Raaj = new Contact('Subhash', 'Barela', 'New Delhi', '8654765433');
+  const Jadhav = new Contact('Raaj', 'Chouhan', 'USA', '8845422656');
   const book = new AddressBook();
   
-  book.addContact(john);
-  book.addContact(jane);
+  book.addContact(Raaj);
+  book.addContact(Jadhav);
   
   console.log(book.getAllContacts()); 
