@@ -42,8 +42,9 @@ class Contact {
         }
         return null;
       }
-      getNumberOfContacts() {
-        return this.contacts.reduce((count, contact) => count + 1, 0);
+     
+      filterContactsByCity(city) {
+        return this.contacts.filter(contact => contact.city === city);
       }
   }
   
@@ -56,5 +57,5 @@ class Contact {
   book.addContact(Raaj);
   book.addContact(Jadhav);
   
-  const numberOfContacts = book.getNumberOfContacts();
-  console.log(numberOfContacts);
+  const losAngelesContacts = book.filterContactsByCity('New york');
+  console.log(losAngelesContacts);
