@@ -42,6 +42,9 @@ class Contact {
         }
         return null;
       }
+      getNumberOfContacts() {
+        return this.contacts.reduce((count, contact) => count + 1, 0);
+      }
   }
   
   
@@ -53,9 +56,5 @@ class Contact {
   book.addContact(Raaj);
   book.addContact(Jadhav);
   
-  const foundContact = book.findContact('Subhash', 'Barela');
-if (foundContact) {
-  console.log("Contact Found!");
-} else {
-  console.log('Contact not found');
-}
+  const numberOfContacts = book.getNumberOfContacts();
+  console.log(numberOfContacts);
