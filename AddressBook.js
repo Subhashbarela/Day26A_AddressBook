@@ -32,7 +32,7 @@ class Contact {
     }
     
     getAllContacts() {
-      return this.contacts;
+      return this.contacts.sort((a, b) => a.firstName.localeCompare(b.firstName));
     }
   
      findContact(firstName, lastName) {
@@ -68,13 +68,14 @@ class Contact {
   const person4 = new Contact('Bruce', 'Banner', 'California', '8369315555');
   const book = new AddressBook();
   
+  
   book.addContact(john);
   book.addContact(jane);
   book.addContact(person3);
   book.addContact(person4);
   
-  const contactsByCity = book.getNumberOfContactsByCity();
-  for (const city in contactsByCity) {
-    console.log(`${city}: ${contactsByCity[city]}`);
-  }
+  const contacts = book.getAllContacts();
+  contacts.forEach(contact => console.log(`${contact.firstName} ${contact.lastName} - ${contact.city}, ${contact.phoneNumber}`));
+  
+  
   
